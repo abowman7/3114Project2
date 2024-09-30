@@ -19,6 +19,7 @@ public class Record
     private String desc;    //description
     private String[] keywords;     //array of keywords
     private DateTime date;
+    private String type;
 
     /**
      * Constructor
@@ -29,7 +30,7 @@ public class Record
      *      token to be stored
      */
     public Record(int id, String title, DateTime date, int length, 
-        int x, int y, int cost, String[] keywords, String description) {
+        int x, int y, int cost, String[] keywords, String description, String type) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -39,6 +40,7 @@ public class Record
         this.cost = cost;
         this.keywords = keywords;
         this.desc = description;
+        this.type = type;
     }
     
     /**
@@ -143,6 +145,17 @@ public class Record
      */
     public DateTime getDate() {
         return date;
+    }
+    
+    /**
+     * getType string
+     * 
+     * @return String
+     *      returns the type
+     *
+     */
+    public String getType() {
+        return title;
     }
     
     /**
