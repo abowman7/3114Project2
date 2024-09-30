@@ -1,4 +1,5 @@
 // Binary Search Tree implementation
+// mostly from OpenDSA
 class BST {
   private BSTNode root; // Root of the BST
   private int nodecount; // Number of nodes in the BST
@@ -29,20 +30,24 @@ class BST {
   // key: The key value of record to remove
   // Returns the record removed, null if there is none.
   public Comparable remove(Comparable key) {
-    Comparable temp = findhelp(root, key); // First find it
+    Comparable[] temp = findhelp(root, key); // First find it
     if (temp != null) {
       root = removehelp(root, key); // Now remove it
       nodecount--;
     }
-    return temp;
+    return null;
   }
 
   // Return the record with key value k, null if none exists
   // key: The key value to find
-  public Comparable find(Comparable key) { return findhelp(root, key); }
+  public Comparable[] find(Comparable key) { 
+      return findhelp(root, key); 
+  }
 
   // Return the number of records in the dictionary
-  public int size() { return nodecount; }
+  public int size() { 
+      return nodecount; 
+  }
   
   // Get the maximum valued element in a subtree
   private BSTNode getmax(BSTNode rt) {
@@ -59,7 +64,8 @@ class BST {
       return rt;
   }
   
-  private Comparable findhelp(BSTNode rt, Comparable key) {
+  private Comparable[] findhelp(BSTNode rt, Comparable key) {
+      Comparable[] arr = new Comparable[nodecount];
       if (rt == null) {
           return null;
       }
@@ -67,7 +73,9 @@ class BST {
           return findhelp(rt.left(), key);
       }
       else if (rt.value().compareTo(key) == 0) {
-          return rt.value();
+          Comparable[] keys = findhelp(rt.left(), key);
+          arr[0] = rt.value();
+          return append(arr, keys);
       }
       else {
           return findhelp(rt.right(), key);
@@ -115,9 +123,28 @@ class BST {
   }
   
   private void printhelp(BSTNode rt) {
-      if (rt == null) return;
+      if (rt == null) 
+          return;
       printhelp(rt.left());
       //printVisit(rt.value());
       printhelp(rt.right());
     }
+  
+  public Comparable[] append(Comparable[] arr, Comparable[] keys)
+  {
+      if(keys == null) {
+          return null;
+      }
+      int index = 0;
+      while (index != nodecount && arr[index] != null) {
+          index++;
+      }
+      int i = 0;
+      while (i != nodecount && keys[i] != null) {
+          arr[index] = keys[i];
+          index++;
+          i++;
+      }
+      return arr;
+  }
 }
