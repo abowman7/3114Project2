@@ -35,7 +35,10 @@ class BST {
       root = removehelp(root, key); // Now remove it
       nodecount--;
     }
-    return null;
+    else {
+        return null;
+    }
+    return temp[0];
   }
 
   // Return the record with key value k, null if none exists
@@ -130,10 +133,14 @@ class BST {
       printhelp(rt.right());
     }
   
-  public Comparable[] append(Comparable[] arr, Comparable[] keys)
+  public void print() {
+      printhelp(root);
+  }
+  
+  private Comparable[] append(Comparable[] arr, Comparable[] keys)
   {
       if(keys == null) {
-          return null;
+          return arr;
       }
       int index = 0;
       while (index != nodecount && arr[index] != null) {

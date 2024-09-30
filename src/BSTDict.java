@@ -4,10 +4,14 @@ public class BSTDict implements Dictionary {
   private BST theBST; // The BST that stores the records
 
   // constructor
-  BSTDict() { theBST = new BST(); }
+  BSTDict() { 
+      theBST = new BST(); 
+  }
 
   // Reinitialize dictionary
-  public void clear() { theBST = new BST(); }
+  public void clear() { 
+      theBST = new BST(); 
+  }
 
   // Insert a record
   // k: the key for the record being inserted.
@@ -22,14 +26,20 @@ public class BSTDict implements Dictionary {
   // an arbitrary one. Return null if no record with key "k" exists.
   public Object remove(Comparable k) {
     Object temp = theBST.remove(k);
-    if (temp == null) { return temp; }
-    else { return ((KVPair)temp).value(); }
+    if (temp == null) { 
+        return temp; 
+    }
+    else { 
+        return ((KVPair)temp).value(); 
+    }
   }
 
   // Remove and return an arbitrary record from dictionary.
   // Return the record removed, or null if none exists.
   public Object removeAny() {
-    if (theBST.size() == 0) { return null; }
+    if (theBST.size() == 0) { 
+        return null; 
+    }
     Object temp = theBST.remove(((KVPair)(theBST.root().value())).key());
     return ((KVPair)temp).value();
   }
@@ -37,10 +47,14 @@ public class BSTDict implements Dictionary {
   // Return a record matching "k" (null if none exists).
   // If multiple records match, return an arbitrary one.
   // k: the key of the record to find
-  public Object find(Comparable k) {
-    Object temp = theBST.find(k);
-    if (temp == null) { return temp; }
-    else { return ((KVPair)temp).value(); }
+  public Object[] find(Comparable k) {
+    Object[] temp = theBST.find(k);
+    if (temp == null) { 
+        return null; 
+    }
+    else { 
+        return temp;
+    }
   }
 
   // Return the number of records in the dictionary.
