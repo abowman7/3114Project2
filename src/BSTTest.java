@@ -1,4 +1,5 @@
 import student.TestCase;
+import static org.junit.Assert.*;
 
 public class BSTTest extends TestCase {
     private BST bst;
@@ -127,4 +128,32 @@ public class BSTTest extends TestCase {
 
         assertFalse(null == bst.getmax(node));
     }
+    
+    public void testAppendWithNullKeys() {
+        Comparable[] arr = new Comparable[]{1, 2, null, null, null};
+        Comparable[] keys = null;
+
+        Comparable[] result = bst.append(arr, keys);
+
+        assertArrayEquals(new Comparable[]{1, 2, null, null, null}, result);
+    }
+
+    public void testAppendFullArray() {
+        Comparable[] arr = new Comparable[]{1, 2, 3, 4, 5};
+        Comparable[] keys = {6, 7};
+
+        Comparable[] result = bst.append(arr, keys);
+
+        assertArrayEquals(new Comparable[]{1, 2, 3, 4, 5}, result); 
+    }
+
+    public void testAppendEmptyKeys() {
+        Comparable[] arr = new Comparable[5];
+        Comparable[] keys = {};
+
+        Comparable[] result = bst.append(arr, keys);
+        //all null
+        assertArrayEquals(new Comparable[]{null, null, null, null, null}, result); 
+    }
+
 }
