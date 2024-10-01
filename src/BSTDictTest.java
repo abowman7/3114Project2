@@ -2,9 +2,11 @@ import student.TestCase;
 
 public class BSTDictTest extends TestCase {
     private BSTDict dict;
-
+    private BSTDict dict2;
+    
     public void setUp() {
         dict = new BSTDict();
+        dict2 = new BSTDict(true);
     }
 
 
@@ -15,6 +17,15 @@ public class BSTDictTest extends TestCase {
         dict.insert(2, "Value2");
         dict.insert(1, "Value3"); // repeat key
         assertEquals(3, dict.size());
+    }
+    
+    public void testInsertAndSize2() {
+        assertEquals(0, dict2.size());
+        dict2.insert(1, "Value1");
+        assertEquals(1, dict2.size());
+        dict2.insert(2, "Value2");
+        dict2.insert(1, "Value3"); // repeat key
+        assertEquals(2, dict2.size());
     }
 
 

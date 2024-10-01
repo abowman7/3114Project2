@@ -26,8 +26,9 @@ public class BSTDict implements Dictionary {
     // k: the key for the record being inserted.
     // e: the record being inserted.
     public void insert(Comparable k, Object e) {
-        if (theBST.find(k) != null) {
-            return;
+        if (allowDupes) {
+            if (theBST.find(k) != null)
+                return;
         }
         theBST.insert(new KVPair(k, e));
     }
