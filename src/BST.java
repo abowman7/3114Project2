@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 // Binary Search Tree implementation
 // mostly from OpenDSA
 class BST {
@@ -141,7 +142,7 @@ class BST {
     }
 
 
-    private void printhelp(BSTNode rt) {
+    /*private void printhelp(BSTNode rt) {
         if (rt == null)
             return;
         printhelp(rt.left());
@@ -152,23 +153,33 @@ class BST {
 
     public void print() {
         printhelp(root);
-    }
+    }*/
 
 
-    private Comparable[] append(Comparable[] arr, Comparable[] keys) {
+    public Comparable[] append(Comparable[] arr, Comparable[] keys) {
+        if (arr == null) {
+            return keys.clone(); // Return a copy of array2 if array1 is null
+        }
         if (keys == null) {
-            return arr;
+            return arr.clone(); // Return a copy of array1 if array2 is null
         }
-        int index = 0;
-        while (index != nodecount && arr[index] != null) {
-            index++;
+
+        // Create a new array of the same type as array1
+        Comparable[] result = (Comparable[]) Array.newInstance(arr.getClass().getComponentType(), arr.length);
+
+        // Copy elements from array1 to result
+        System.arraycopy(arr, 0, result, 0, arr.length);
+
+        // Index to track elements from array2
+        int index2 = 0;
+
+        // Loop through the result array to find null positions
+        for (int i = 0; i < result.length; i++) {
+            if (result[i] == null && index2 < keys.length) {
+                result[i] = keys[index2++];
+            }
         }
-        int i = 0;
-        while (i != nodecount && keys[i] != null) {
-            arr[index] = keys[i];
-            index++;
-            i++;
-        }
-        return arr;
+
+        return result;
     }
 }

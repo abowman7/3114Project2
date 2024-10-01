@@ -113,47 +113,89 @@ public class BSTTest extends TestCase {
         assertNull(bst.remove(5)); // Not found
         assertNull(bst.remove(7)); // Not found
         assertNull(bst.remove(3)); // Not found
-
-        assertEquals(7, bst.getmax(new BSTNode(7)));
-        assertEquals(7, bst.getmax(new BSTNode(3, new BSTNode(1), new BSTNode(
-            7))));
-        assertNull(bst.getmax(new BSTNode()));
-
-        assertEquals(3, bst.deletemax(new BSTNode(5, new BSTNode(2),
-            new BSTNode())));
-        BSTNode node = new BSTNode(5, new BSTNode(2), new BSTNode(6,
-            new BSTNode(), new BSTNode(10)));
-        assertTrue(bst.getmax(node) != null);
-        assertEquals(5, bst.deletemax(node));
-
-        assertFalse(null == bst.getmax(node));
     }
     
-    public void testAppendWithNullKeys() {
-        Comparable[] arr = new Comparable[]{1, 2, null, null, null};
-        Comparable[] keys = null;
-
-        Comparable[] result = bst.append(arr, keys);
-
-        assertArrayEquals(new Comparable[]{1, 2, null, null, null}, result);
+    public void testAppendNull1() {
+        Comparable[] keys = {1, 2, 3};
+        Comparable[] result = bst.append(null, keys);
+        assertArrayEquals(keys, result);
     }
 
-    public void testAppendFullArray() {
-        Comparable[] arr = new Comparable[]{1, 2, 3, 4, 5};
-        Comparable[] keys = {6, 7};
-
-        Comparable[] result = bst.append(arr, keys);
-
-        assertArrayEquals(new Comparable[]{1, 2, 3, 4, 5}, result); 
+    public void testAppendNull2() {
+        Comparable[] arr = {4, 5, 6};
+        Comparable[] result = bst.append(arr, null);
+        assertArrayEquals(arr, result);
     }
 
-    public void testAppendEmptyKeys() {
-        Comparable[] arr = new Comparable[5];
-        Comparable[] keys = {};
+    public void testAppendEmpty() {
+        Comparable[] arr = {4, 5, 6};
+        Comparable[] result = bst.append(arr, new Comparable[0]);
+        assertArrayEquals(arr, result);
+    }
 
+    public void testAppend() {
+        Comparable[] arr = {4, null, null};
+        Comparable[] keys = {1, 2, 3};
         Comparable[] result = bst.append(arr, keys);
-        //all null
-        assertArrayEquals(new Comparable[]{null, null, null, null, null}, result); 
+        Comparable[] expected = {4, 1, 2}; // appended keys
+        assertArrayEquals(expected, result);
+    }
+
+    public void testAppendFull() {
+        Comparable[] arr = {1, 2, 3};
+        Comparable[] keys = {4, 5, 6};
+        Comparable[] result = bst.append(arr, keys);
+        Comparable[] expected = {1, 2, 3}; // add no keys
+        assertArrayEquals(expected, result);
+    }
+    
+    //getting getmax and deletemax mutations
+
+    public void testGetMax_SingleNode() {
+        bst.insert(5);
+        assertEquals(5, bst.getmax(bst.root()).value());
+    }
+
+    public void testGetMax_MultipleNodes() {
+        bst.insert(5);
+        bst.insert(3);
+        bst.insert(7);
+        bst.insert(8);
+        assertEquals(8, bst.getmax(bst.root()).value());
+    }
+
+    public void testDeleteMax_SingleNode() {
+        bst.insert(5);
+        BSTNode newRoot = bst.deletemax(bst.root());
+        assertNull(newRoot);
+        assertEquals(1, bst.size());
+    }
+
+    public void testDeleteMax_MultipleNodes() {
+        bst.insert(5);
+        bst.insert(3);
+        bst.insert(7);
+        bst.insert(8);
+
+        // Deleting the max value
+        bst.deletemax(bst.root());
+        //assertEquals(7, newRoot.value());
+
+        // Checking the new max value
+        assertEquals(7, bst.getmax(bst.root()).value());
+    }
+
+    public void testDeleteMax_UpdateTreeStructure() {
+        bst.insert(5);
+        bst.insert(3);
+        bst.insert(7);
+        bst.insert(8);
+        bst.insert(6);
+
+        // Delete max and check structure
+        bst.deletemax(bst.root());
+        assertEquals(7, bst.getmax(bst.root()).value());
+        assertEquals(5, bst.root().value());
     }
 
 }

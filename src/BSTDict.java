@@ -2,12 +2,19 @@
 // This uses KVPair to manage the key/value pairs
 public class BSTDict implements Dictionary {
     private BST theBST; // The BST that stores the records
-
+    private boolean allowDupes;
+    
     // constructor
     BSTDict() {
         theBST = new BST();
+        allowDupes = false;
     }
 
+    // constructor
+    BSTDict(boolean dupe) {
+        theBST = new BST();
+        allowDupes = dupe;
+    }
 
     // Reinitialize dictionary
     public void clear() {
@@ -19,6 +26,9 @@ public class BSTDict implements Dictionary {
     // k: the key for the record being inserted.
     // e: the record being inserted.
     public void insert(Comparable k, Object e) {
+        if (theBST.find(k) != null) {
+            return;
+        }
         theBST.insert(new KVPair(k, e));
     }
 
