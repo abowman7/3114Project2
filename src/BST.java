@@ -123,7 +123,7 @@ class BST {
             Comparable[] keys = findRange(rt.left(), left, right);
             Comparable[] keys2 = findRange(rt.right(), left, right);
             arr[0] = rt.value();
-            Comparable[] leftArr = append(arr, keys);
+            Comparable[] leftArr = append(keys, arr);
             return append(leftArr, keys2);
         }
         else {
