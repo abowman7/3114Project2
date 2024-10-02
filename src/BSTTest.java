@@ -208,7 +208,11 @@ public class BSTTest extends TestCase {
         bst.insert(18);
 
         Comparable[] result = bst.find(5, 15);
-        Comparable[] expected = {10, 5, 7, 15, 12, null, null}; // The order may vary depending on tree structure
+        Comparable[] expected = {5, 7, 10, 12, 15, null, null}; // The order may vary depending on tree structure
+        
+        for (Comparable r : result ) {
+            System.out.println(r);
+        }
         
         assertArrayEquals(expected, result);
         assertEquals(12, bst.getNodesVisited());
@@ -224,7 +228,7 @@ public class BSTTest extends TestCase {
         bst.insert(18);
 
         Comparable[] result = bst.find(7, 12);
-        Comparable[] expected = {10, 7, 12, null, null, null, null}; // The order may vary
+        Comparable[] expected = {7, 10, 12, null, null, null, null}; // The order may vary
         
         
         assertArrayEquals(expected, result);
@@ -256,7 +260,7 @@ public class BSTTest extends TestCase {
         bst.insert(18);
 
         Comparable[] result = bst.find(5, 18);
-        Comparable[] expected = {10, 5, 7, 15, 12, 18, null}; // The order may vary
+        Comparable[] expected = {5, 7, 10, 12, 15, 18, null}; // The order may vary
         assertArrayEquals(expected, result);
         assertEquals(13, bst.getNodesVisited());
     }
@@ -271,7 +275,7 @@ public class BSTTest extends TestCase {
         bst.insert(18);
 
         Comparable[] result = bst.find(1, 10);
-        Comparable[] expected = {10, 5, 3, 7, null, null, null}; // The order may vary
+        Comparable[] expected = {3, 5, 7, 10, null, null, null}; // The order may vary
 
         
         assertArrayEquals(expected, result);
