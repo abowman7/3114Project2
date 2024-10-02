@@ -197,5 +197,80 @@ public class BSTTest extends TestCase {
         assertEquals(7, bst.getmax(bst.root()).value());
         assertEquals(5, bst.root().value());
     }
+    
+    public void testFindRangeWithinBounds() {
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(15);
+        bst.insert(7);
+        bst.insert(3);
+        bst.insert(12);
+        bst.insert(18);
+
+        Comparable[] result = bst.find(5, 15);
+        Comparable[] expected = {10, 5, 7, 15, 12, null, null}; // The order may vary depending on tree structure
+        
+        assertArrayEquals(expected, result);
+    }
+
+    public void testFindRangeExactMatch() {
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(15);
+        bst.insert(7);
+        bst.insert(3);
+        bst.insert(12);
+        bst.insert(18);
+
+        Comparable[] result = bst.find(7, 12);
+        Comparable[] expected = {10, 7, 12, null, null, null, null}; // The order may vary
+        
+        
+        assertArrayEquals(expected, result);
+    }
+
+    public void testFindRangeNoMatches() {
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(15);
+        bst.insert(7);
+        bst.insert(3);
+        bst.insert(12);
+        bst.insert(18);
+
+        Comparable[] result = bst.find(20, 30);
+        
+        assertNull(result);
+    }
+
+    public void testFindRangeLowerBoundOnly() {
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(15);
+        bst.insert(7);
+        bst.insert(3);
+        bst.insert(12);
+        bst.insert(18);
+
+        Comparable[] result = bst.find(5, 18);
+        Comparable[] expected = {10, 5, 7, 15, 12, 18, null}; // The order may vary
+        assertArrayEquals(expected, result);
+    }
+
+    public void testFindRangeUpperBoundOnly() {
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(15);
+        bst.insert(7);
+        bst.insert(3);
+        bst.insert(12);
+        bst.insert(18);
+
+        Comparable[] result = bst.find(1, 10);
+        Comparable[] expected = {10, 5, 3, 7, null, null, null}; // The order may vary
+
+        
+        assertArrayEquals(expected, result);
+    }
 
 }

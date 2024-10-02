@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 class BST {
     private BSTNode root; // Root of the BST
     private int nodecount; // Number of nodes in the BST
+    private int nodesV;
 // CHANGE IMPLEMENTATION INTO B TREE
 // constructor
 
@@ -55,6 +56,13 @@ class BST {
     public Comparable[] find(Comparable key) {
         return findhelp(root, key);
     }
+    
+    public Comparable[] find(Comparable l, Comparable r) {
+        nodesV = 0;
+        Comparable[] temp = findRange(root, l, r);
+        //System.out.println(nodesV);
+        return temp;
+    }
 
 
     // Return the number of records in the dictionary
@@ -98,7 +106,30 @@ class BST {
             return findhelp(rt.right(), key);
         }
     }
-
+    
+    private Comparable[] findRange(BSTNode rt, Comparable left, Comparable right) {
+        nodesV++;
+        if (rt == null) {
+            return null;
+        }
+        Comparable[] arr = new Comparable[nodecount];
+        int lComp = rt.value().compareTo(left);
+        int rComp = rt.value().compareTo(right);
+        
+        if (rComp > 0) {
+            return findRange(rt.left(), left, right);
+        }
+        else if (lComp >= 0) {
+            Comparable[] keys = findRange(rt.left(), left, right);
+            Comparable[] keys2 = findRange(rt.right(), left, right);
+            arr[0] = rt.value();
+            Comparable[] leftArr = append(arr, keys);
+            return append(leftArr, keys2);
+        }
+        else {
+            return findRange(rt.right(), left, right);
+        }
+    }
 
     private BSTNode inserthelp(BSTNode rt, Comparable e) {
         if (rt == null) {
@@ -140,21 +171,6 @@ class BST {
         }
         return rt;
     }
-
-
-    /*private void printhelp(BSTNode rt) {
-        if (rt == null)
-            return;
-        printhelp(rt.left());
-        // printVisit(rt.value());
-        printhelp(rt.right());
-    }
-
-
-    public void print() {
-        printhelp(root);
-    }*/
-
 
     public Comparable[] append(Comparable[] arr, Comparable[] keys) {
         if (arr == null) {
