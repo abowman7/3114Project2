@@ -1,0 +1,22 @@
+insert 3
+Overview of HPC and CSE Research at VT
+1203301125     35        0  0                                           25
+      HPC      CSE      computer_science 
+Learn what kind of    research is done on HPC  and CSE at VT
+insert 2
+Computational Biology and Bioinformatics in CS at Virginia Tech
+      0610071600       60     10     10 30
+Bioinformatics computation_biology Biology Computer_Science VT Virginia_Tech
+    Introduction to   bioinformatics and computation biology
+insert 2
+Computational Biology and Bioinformatics in CS at Virginia Tech
+      0610071600       60     10     10 30
+Bioinformatics computation_biology Biology Computer_Science VT Virginia_Tech
+    Introduction to   bioinformatics and computation biology
+search keyword HPC
+search keyword Fortnite
+search ID 3
+delete 90
+delete 2
+delete 2
+search ID 2
