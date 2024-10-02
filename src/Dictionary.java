@@ -38,11 +38,21 @@ public interface Dictionary {
 
     /**
      * @return A record matching "k" (null if none exists).
-     *         If multiple records match, return an arbitrary one.
+     *         If multiple records match, return all.
      * @param key
      *            The key of the record to find
      */
     public Object find(Comparable key);
+    
+    /**
+     * @return A records between l and r (null if none exists).
+     *         If multiple records match, return an arbitrary one.
+     * @param l
+     *            left bound
+     * @param r
+     *            right bound
+     */
+    public Object find(Comparable l, Comparable r);
 
 
     /** @return The number of records in the dictionary. */
