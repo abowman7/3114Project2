@@ -211,6 +211,7 @@ public class BSTTest extends TestCase {
         Comparable[] expected = {10, 5, 7, 15, 12, null, null}; // The order may vary depending on tree structure
         
         assertArrayEquals(expected, result);
+        assertEquals(13, bst.getNodesVisited());
     }
 
     public void testFindRangeExactMatch() {
@@ -227,6 +228,7 @@ public class BSTTest extends TestCase {
         
         
         assertArrayEquals(expected, result);
+        assertEquals(9, bst.getNodesVisited());
     }
 
     public void testFindRangeNoMatches() {
@@ -241,6 +243,7 @@ public class BSTTest extends TestCase {
         Comparable[] result = bst.find(20, 30);
         
         assertNull(result);
+        assertEquals(4, bst.getNodesVisited());
     }
 
     public void testFindRangeLowerBoundOnly() {
@@ -255,6 +258,7 @@ public class BSTTest extends TestCase {
         Comparable[] result = bst.find(5, 18);
         Comparable[] expected = {10, 5, 7, 15, 12, 18, null}; // The order may vary
         assertArrayEquals(expected, result);
+        assertEquals(14, bst.getNodesVisited());
     }
 
     public void testFindRangeUpperBoundOnly() {
@@ -271,6 +275,7 @@ public class BSTTest extends TestCase {
 
         
         assertArrayEquals(expected, result);
+        assertEquals(11, bst.getNodesVisited());
     }
 
 }

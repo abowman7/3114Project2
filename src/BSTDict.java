@@ -63,6 +63,17 @@ public class BSTDict implements Dictionary {
     // Return a record matching "k" (null if none exists).
     // If multiple records match, return an arbitrary one.
     // k: the key of the record to find
+    public Comparable[] find(Comparable l, Comparable r) {
+        Comparable[] temp = theBST.find(l, r);
+
+        if (temp == null) {
+            return null;
+        }
+        else {
+            return temp;
+        }
+    }
+    
     public Comparable[] find(Comparable k) {
         Comparable[] temp = theBST.find(k);
 
@@ -78,5 +89,9 @@ public class BSTDict implements Dictionary {
     // Return the number of records in the dictionary.
     public int size() {
         return theBST.size();
+    }
+    
+    public int getNodesV() {
+        return theBST.getNodesVisited();
     }
 }
