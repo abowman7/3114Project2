@@ -100,7 +100,7 @@ class BST {
         else if (rt.value().compareTo(key) == 0) {
             Comparable[] keys = findhelp(rt.left(), key);
             arr[0] = rt.value();
-            return append(arr, keys);
+            return append(keys, arr);
         }
         else {
             return findhelp(rt.right(), key);
