@@ -58,7 +58,7 @@ class BST {
     }
     
     public Comparable[] find(Comparable l, Comparable r) {
-        nodesV = -1;
+        nodesV = 0;
         Comparable[] temp = findRange(root, l, r);
         //System.out.println(nodesV);
         return temp;
